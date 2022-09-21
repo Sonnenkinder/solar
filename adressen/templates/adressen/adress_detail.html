@@ -1,0 +1,122 @@
+
+<!-- adressen/templates/adressen/adress_detail.html -->
+
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2><u>Detailansicht</u></h2>
+    
+    <div class="container-fluid">
+        <div class="row">
+        <div class="col">
+            <b>{{adressen.name }} {{adressen.vorname }}</b><br>
+            {{adressen.anschrift}}<br>
+            {{adressen.plz}} {{adressen.ort}}</div>
+        <div class="col">
+            &#9742; {{adressen.telefon}}<br>
+            &#9990; {{adressen.handy}}<br>
+            &#9993; <a href="mailto:{{adressen.emailadresse}}"">{{adressen.emailadresse}}</a></div>
+        </div>
+    </div>
+
+    <p></p>
+    <hr>
+
+    <div class="container-fluid">
+        <div class="row">
+        <div class="col">
+            Anlagenleistung: {{adressen.anlagenleistung}} kWp<br>
+            Spezifischer Jahresertrag: (x) {{adressen.spezifischer_jahresertrag}}<br>
+            Einspeiseverg&#252;tung: {{adressen.einspeiseverguetung}} &#8364;<br>
+            Sunny-Homemanager-SN: {{adressen.sn_homemanager}}<p></p>            
+        </div>
+        <div class="col">
+            <h4><u>Zugangsdaten</u></h4>
+            Portal-PW: <b>{{adressen.passwort_portal}}</b><br>
+            Anlagen-PW: {{adressen.anlagenpasswort}}
+        </div>
+        </div>
+    </div>
+    <hr>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col"><p><u>Wechselrichter</u></p>
+                WR1: {{adressen.wr1}} &nbsp;/&nbsp; SN: {{adressen.wr1_sn}}<br>
+                WR2: {{adressen.wr2}} &nbsp;/&nbsp; SN: {{adressen.wr2_sn}}
+            </div>
+            <div class="col">
+                Batterie-WR: {{adressen.batteriewr}} &nbsp;/&nbsp; {{adressen.batteriewr_sn}}<br>
+                Batterie Modul: {{adressen.batteriemodul}}
+            </div>
+        </div>
+    </div>    
+    <hr>
+    <p></p>
+    <div class="container-fluid">
+        <div class="row">
+        <div class="col">
+        <u>Notizen:</u><br>
+        {{adressen.notizen}}<br>
+        </div>
+        <div class="col">
+        Aufschaltung: {{adressen.termin_auf}}<br>
+        erledigt: {% if adressen.termin_auf_erl == True %} <d style="color:rgb(27, 175, 8);font-size:25px;">&#10004;</d> {% else %} 
+            <d style="color:rgb(238, 9, 9);font-size:25px;">&#10006;</d> {% endif %}<br>  
+        Termin(e): {{adressen.notizen_termin}}<br>
+        </div>
+        </div>
+    </div>        
+    <p></p>
+    <hr>
+
+    <div class="container-fluid">
+        <div class="row">
+        <div class="col">
+            <a class="btn btn-secondary btn-sm" href="{% url 'adress_start' %}">Zurück</a>
+            <a class="btn btn-success btn-sm" href="{% url 'adress_update' adressen.pk %}">Update</a>
+            <a class="btn btn-secondary btn-sm" href="{% url 'adress_kal' adressen.pk %}">Kalendar</a>
+        </div>
+        <div class="col" align="right">
+            <a class="btn btn-secondary btn-sm" href="{% url 'adress_ber' adressen.pk %}">Bericht</a>
+            <a class="btn btn-secondary btn-sm" href="{% url 'adress_lauf' adressen.pk %}">Laufzettel</a>
+            <a class="btn btn-success btn-sm" href="mailto:{{adressen.emailadresse}}&subject=WG: Aufschaltung PV Anlage&body=
+            Sehr geehrte Familie {{adressen.name}}%0D%0A
+            %0D%0A
+            ich habe Ihre E-Mail-Adresse {{adressen.emailadresse}} für das Sunny Portal bei%0D%0A
+            SMA registriert.%0D%0A
+            Dieser Schritt erleichtert mir die Aufschaltung am {{adressen.termin_auf}}.%0D%0A
+            %0D%0A
+            Hierzu erhalten Sie eine gesonderte Mail vom Sunny Portal. Darin enthalten%0D%0A
+            befindet sich ein Link den Sie bitte aufrufen.%0D%0A
+            Mit dem Aufruf des Links öffnet sich eine Webseite von SMA hier bestätigen%0D%0A
+            Sie die Anmeldung an das Sunny Portal SMA.%0D%0A
+            %0D%0A<span style=color:red;>
+            Danach bitte ich Sie die Seite wieder zu Schließen und keine weiteren%0D%0A
+            Einstellungen vorzunehmen!%0D%0A
+            (Einfach durch das X am rechten oberen Bildschirmrand)%0D%0A
+            %0D%0A
+            Bitte sehen Sie auch davon ab Ihre Mailadresse selber bei SMA zu%0D%0A
+            registrieren.%0D%0A
+            Des Weiteren ist es wichtig! - dass Sie die Wechselrichter nicht durch den%0D%0A
+            aufgebrachten Aufkleber (QR-Code) aufrufen%0D%0A
+            und dort Passwörter erstellen - dies erschwert ebenso die Installation - %0D%0A
+            erzeugt Mehraufwand und zusätzliche Kosten.</span>%0D%0A
+            %0D%0A
+            Erst danach kann ich Ihre Anlage an unserem Termin am {{adressen.termin_auf}}%0D%0A
+            installieren.%0D%0A
+            %0D%0A
+            Alle die von Ihnen benötigten Zugangsdaten erhalten Sie nach erfolgreicher%0D%0A
+            Einrichtung ausgehändigt.%0D%0A
+            %0D%0A
+            Sollten Sie hierzu noch Fragen haben stehe ich Ihnen oder Herr Franken%0D%0A
+            gerne zur Verfügung.%0D%0A
+            %0D%0A
+            Vielen Dank Vorab.">Mail Aufsch.</a>
+            
+            <a class="btn btn-success btn-sm" href="http://www.sunnyportal.de/login" target="_blank">SunnyPortal</a>
+            <a class="btn btn-secondary btn-success btn-sm" href="https://www.google.de/maps/dir/Anton-Heinen-Stra%C3%9Fe+78,+50181+Bedburg/{{adressen.anschrift}}+{{adressen.plz}}+{{adressen.ort}}" target="_blank">Route</a>
+            <a class="btn btn-danger btn-sm" href="{% url 'adress_delete' adressen.pk %}">Löschen</a>
+        </div>
+        </div>
+    </div>
+{% endblock content %}

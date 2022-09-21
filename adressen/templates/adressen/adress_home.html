@@ -1,0 +1,21 @@
+<!-- adressen/templates/adressen/adress_home.html -->
+{% extends 'base.html' %}
+{% block content %}
+
+<h2>Alle Adressen</h2>
+<p></p>
+    <a class="btn btn-success btn-sm" href="{% url 'neue_adresse' %}">+ Neue Adresse hinzufügen</a>
+<p></p>
+<ul>
+{% for adresse in object_list %}
+<li><a href="{% url 'adress_detail' adresse.pk %}"><b>{{ adresse.name }}</b> {{ adresse.vorname }} ... ({{adresse.ort}})  
+    
+    <!-- date only display if greater than today -->
+    {% now "Y-m-d" as todays_date %}
+    {% if todays_date < adresse.termin_auf|date:"Y-m-d" %}
+        <b>Termin am {{adresse.termin_auf}}</b>
+    {% endif %}</a></li> 
+
+{% endfor %}
+</ul>
+{% endblock content %}

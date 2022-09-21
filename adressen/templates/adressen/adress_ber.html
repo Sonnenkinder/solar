@@ -1,0 +1,167 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<style>
+table,th,td{
+    padding-left: 20px;
+}
+
+.in {
+  background-color: rgba(233,236,239);
+  
+}
+
+h2 {
+    padding-top: 0.25em;
+}
+
+h4 {
+    padding-top: 0.5em;
+}
+
+</style>
+<div class="noprint">
+<div class="container-fluid">
+    <div class="row">
+        <div class="col">
+            <a class="btn btn-secondary btn-sm" href="javascript:history.back()">Zurück</a>
+            <a class="btn btn-secondary btn-sm" href="javascript:self.print()">Drucken</a>
+        </div>
+    </div>
+</div> 
+</div>
+
+<div class="in">
+<div class="container-fluid">
+    <div class="row">
+    <div class="col">
+        <h2>Laufzettel</h2></div> 
+    <div class="col">
+        <h4 align="right">Datum <script>date = new Date().toLocaleDateString();document.write(date);</script></h4></div>
+    </div>
+</div>
+</div>
+
+<table width="100%">
+    <tbody>
+        <tr>
+            <td height="70"></td>
+        </tr>
+        <tr>
+            <td width="40%">Anlagenname:</td><td>{{adressen.anlagenname}}</td>
+        </tr>
+        <tr>
+            <td height="30"></td>
+        </tr>
+        <tr>
+            <td width="40%">Name / Vorname:</td><td>{{adressen.name}} {{adressen.vorname}}</td>
+        </tr>
+        <tr>
+            <td height="30"></td>
+        </tr>
+        <tr>
+            <td width="40%">Anschrift:</td><td>{{adressen.anschrift}}</td>
+        </tr>
+        <tr>
+            <td height="30"></td>
+        </tr>
+        <tr>
+            <td width="40%">PLZ / Ort:</td><td>{{adressen.plz}} {{adressen.ort}}</td>
+        </tr>
+        <tr>
+            <td height="30"></td>
+        </tr>
+        <tr>
+            <td width="40%">Telefon:</td><td>{{adressen.telefon}}</td>
+        </tr>
+        <tr>
+            <td height="30"></td>
+        </tr>
+        <tr>
+            <td width="40%">Handy:</td><td>{{adressen.handy}}</td>
+        </tr>
+        <tr>
+            <td height="30"></td>
+        </tr>
+        <tr>
+            <td width="40%">Email:</td><td>{{adressen.emailadresse}}</td>
+        </tr>
+        <tr>
+            <td height="30"></td>
+        </tr>
+        <tr>
+            <td width="40%">Inbetriebnahme:</td><td>{{adressen.inbetriebnahme}}</td>
+        </tr>
+        <tr>
+            <td height="30"></td>
+        </tr>
+        <tr>
+            <td width="40%">Leistung:</td><td>{{adressen.anlagenleistung}} kWp</td>
+        </tr>
+        <tr>
+            <td height="30"></td>
+        </tr>
+        <tr>
+            <td width="40%">Eispeise Vergütung:</td><td>{{adressen.einspeiseverguetung}} &euro;</td>
+        </tr>
+        <tr>
+            <td height="30"></td>
+        </tr>
+        <tr>
+            <td width="40%">Eigenverbrauch:</td><td>{{adressen.eigenverbrauch}}</td>
+        </tr>
+        <tr>
+            <td height="30"></td>
+        </tr>
+        <tr>
+            <td width="40%">Begrenzung Wirkleistung:</td><td>{{adressen.wirkbegrenzung}}</td>
+        </tr>
+        <tr>
+            <td height="30"></td>
+        </tr>
+        <tr>
+            <td width="40%"><u>Wechselrichter</u></td>
+        </tr>
+        <tr>
+            <td height="30"></td>
+        </tr>
+        <tr>
+            <td width="40%">WR1</td><td>{{adressen.wr1}}</td>
+        </tr>
+        <tr>
+            <td height="30"></td>
+        </tr>
+        <tr>
+            <td width="40%">WR2</td><td>{{adressen.wr2}}</td>
+        </tr>
+        <tr>
+            <td height="30"></td>
+        </tr>
+        <tr>
+            <td>Batterie-WR</td><td>{{adressen.batteriewr}}</td>
+        </tr>
+        <tr>
+            <td height="30"></td>
+        </tr>
+        <tr>
+            <td width="40%">Batterie</td><td>{{adressen.batteriemodul}}</td>
+        </tr>
+        <tr>
+            <td height="30"></td>
+        </tr>
+        <tr>
+            <td width="40%">Notizen</td><td>{{adressen.notizen}}</td>
+        </tr>
+        <tr>
+            <td height="30"></td>
+        </tr>
+        <tr>
+            <td width="40%">Vermerk</td><td>{{adressen.notizen_termin}}</td>
+        </tr>
+    </tbody>
+
+
+</table>
+
+
+{% endblock content %}
