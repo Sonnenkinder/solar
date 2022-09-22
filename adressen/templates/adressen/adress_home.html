@@ -12,7 +12,7 @@
     
     <!-- date only display if greater than today -->
     {% now "Y-m-d" as todays_date %}
-    {% if todays_date < adresse.termin_auf|date:"Y-m-d" %}
+    {% if todays_date <= adresse.termin_auf|date:"Y-m-d" %}
         <b>Termin am {{adresse.termin_auf}}</b>
     {% endif %}</a></li> 
 
