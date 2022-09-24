@@ -34,7 +34,7 @@ SECRET_KEY = env('SECRET')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -90,9 +90,6 @@ DATABASES = {
     }
 }
 
-
-MEDIA_ROOT = '/home/zimbe/Projekte/solar_app/meinprojekt/adressen/temlates/adressen/static/'
-MEDIA_URL = 'http://localhost:8000/static/'
 
 STATIC_ROOT = ''
 
