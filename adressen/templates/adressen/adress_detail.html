@@ -28,12 +28,14 @@
             Anlagenleistung: {{adressen.anlagenleistung}} kWp<br>
             Spezifischer Jahresertrag: (x) {{adressen.spezifischer_jahresertrag}}<br>
             Einspeiseverg&#252;tung: {{adressen.einspeiseverguetung}} &#8364;<br>
+            Inbetriebnahme: {{adressen.inbetriebnahme |date:"d.m.Y"}}<br>
             Sunny-Homemanager-SN: {{adressen.sn_homemanager}}<p></p>            
         </div>
         <div class="col">
             <h4><u>Zugangsdaten</u></h4>
             Portal-PW: <b>{{adressen.passwort_portal}}</b><br>
             Anlagen-PW: {{adressen.anlagenpasswort}}
+            
         </div>
         </div>
     </div>
@@ -59,7 +61,7 @@
         {{adressen.notizen}}<br>
         </div>
         <div class="col">
-        Aufschaltung: {{adressen.termin_auf}}<br>
+        Termin: {{adressen.termin_auf}}<br>
         erledigt: {% if adressen.termin_auf_erl == True %} <d style="color:rgb(27, 175, 8);font-size:25px;">&#10004;</d> {% else %} 
             <d style="color:rgb(238, 9, 9);font-size:25px;">&#10006;</d> {% endif %}<br>  
         Termin(e): {{adressen.notizen_termin}}<br>
