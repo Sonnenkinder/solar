@@ -2,19 +2,49 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<h2>Alle Adressen</h2>
+<div>
+    <div class="row">
+    <div class="col">
+    <a class="btn btn-success btn-sm" href="{% url 'neue_adresse' %}">+ Neuen Kunden hinzufügen</a></div>
+    <div class="col">
+        <script type="text/javascript">
+            
+            var Jetzt = new Date();
+            var Tag = Jetzt.getDate();
+            var Monat = Jetzt.getMonth() + 1;
+            var Jahr = Jetzt.getYear();
+            var Stunden = Jetzt.getHours();
+            var Minuten = Jetzt.getMinutes();
+            var Minute2  = ((Minuten < 10) ? ":0" : ":");
+            if (Jahr<2000) Jahr=Jahr+1900;
+                document.write("<center><b>Heute ist der "
+                + Tag + "." + Monat + "." + Jahr + ". Es ist jetzt " 
+                + Stunden + Minute2 + Minuten + " Uhr<\/b></center>");
+            
+           </script>
+    </div>
+    </div>
+</div>
+
 <p></p>
-    <a class="btn btn-success btn-sm" href="{% url 'neue_adresse' %}">+ Neue Adresse hinzufügen</a>
-<p></p>
-<ul>
-{% for adresse in object_list %}
-<li><a href="{% url 'adress_detail' adresse.pk %}"><b>{{ adresse.name }}</b> {{ adresse.vorname }} ... ({{adresse.ort}})  
-    
-    <!-- date only display if greater than today -->
-    {% now "Y-m-d" as todays_date %}
-    {% if todays_date <= adresse.termin_auf|date:"Y-m-d" and adresse.termin_auf_erl == False %}  
-        <b>Termin am {{adresse.termin_auf}}</b>    
-    {% endif %}</a></li> 
-{% endfor %}
-</ul>
+
+<div>
+        <div class="row">
+        <div class="col"><div class="divcol"><h2>Alle Kunden</h2></div>
+            {% for adresse in object_list %}
+            <li><a href="{% url 'adress_detail' adresse.pk %}"><b>{{ adresse.name }}</b> {{ adresse.vorname }} ... ({{adresse.ort}})</a></li>
+            {% endfor %}
+        </div>
+        <div class="col">
+            <div class="divcol"><h2>Termine</h2></div>
+            {% for adresse in object_list %}
+            {% now "Y-m-d" as todays_date %}
+            {% if todays_date <= adresse.termin_auf|date:"Y-m-d" and adresse.termin_auf_erl == False %}
+            <li><a href="{% url 'adress_detail' adresse.pk %}"><b>{{ adresse.name }}</b> {{ adresse.vorname }} ... ({{adresse.ort}}) &nbsp; &nbsp;<b>Termin am {{adresse.termin_auf}}</b> </li></a>
+            {% endif %}
+            {% endfor %}
+        </div>
+        </div>
+</div>
+
 {% endblock content %}

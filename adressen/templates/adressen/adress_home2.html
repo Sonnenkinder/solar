@@ -1,0 +1,37 @@
+<!-- adressen/templates/adressen/adress_home.html -->
+{% extends 'base.html' %}
+{% block content %}
+
+
+<p></p>
+    <a class="btn btn-success btn-sm" href="{% url 'neue_adresse' %}">+ Neue Adresse hinzufügen</a>
+<p></p>
+
+<div class="container-fluid">
+        <div class="row">
+        <div class="col"><h2>Alle Kunden</h2>
+            <ul>
+            {% for adresse in object_list %}
+            <li><a href="{% url 'adress_detail' adresse.pk %}"><b>{{ adresse.name }}</b> {{ adresse.vorname }} ... ({{adresse.ort}})  
+                
+                <!-- date only display if greater than today -->
+                {% now "Y-m-d" as todays_date %}
+                {% if todays_date <= adresse.termin_auf|date:"Y-m-d" and adresse.termin_auf_erl == False %}  
+                    <b>Termin am {{adresse.termin_auf}}</b>    
+                {% endif %}</a></li> 
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="col">
+            <h2>Termine</h2>
+            {% for adresse in object_list %}
+            {% now "Y-m-d" as todays_date %}
+            {% if todays_date <= adresse.termin_auf|date:"Y-m-d" and adresse.termin_auf_erl == False %}
+            <u><li><a href="{% url 'adress_detail' adresse.pk %}"><b>{{ adresse.name }}</b> {{ adresse.vorname }} ... ({{adresse.ort}}) &nbsp; &nbsp;<b>Termin am {{adresse.termin_auf}}</b> </li></a></ul>
+            {% endif %}
+            {% endfor %}
+        </div>
+</div>
+
+
+{% endblock content %}
